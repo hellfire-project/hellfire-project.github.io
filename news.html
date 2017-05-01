@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="Content-Language" content="en-us" />
+  <meta http-equiv="imagetoolbar" content="false" />
+  <meta name="MSSmartTagsPreventParsing" content="true" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>News | Hellfire Project</title>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500">
+  <link href="./assets/stylesheets/application.css" rel="stylesheet" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <!--
+  <script src="./assets/javascripts/application.js" type="text/javascript"></script>
+  -->
+</head>
+
+
+<body class="blog">
+  
+
+<header class="site-header">
+  <div id="header" class="container">
+    <a class="site-header-logo mt-1" href="./"><img src="./assets/images/hellfire-logo.svg" alt="Hellfire Project"></a>
+    <nav class="site-header-nav">
+      
+      <a class="site-header-nav-item" href="./docs.html">Documentation</a>
+      <a class="site-header-nav-item" href="./news.html">News</a>
+      <a class="site-header-nav-item" href="./contribute.html">Contribute</a>
+      <a class="site-header-nav-item" href="https://github.com/hellfire-project">Support</a>
+
+    </nav>
+  </div>
+</header>
+
+
+  <div class="container">
+    <section class="main pt-5 clearfix gut-3" role="main">
+      <div class="content col-md-8">
+        <div class="change" id="/changes/2017-04-25-Integrations-Pre-Release/">
+  <h2 class="title">
+<a id="--integrations-pre-release" class="anchor" href="#--integrations-pre-release" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-04-25-Integrations-Pre-Release/">Integrations Pre-Release</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    April 25, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/keavy.png" alt="Avatar for keavy" data-proofer-ignore>
+      <a href="https://github.com/keavy" data-proofer-ignore>keavy</a>
+  </li>
+  
+</ul>
+</div>
+
+<p></p>
+<p>Last September, we launched the Early Access program of GitHub Integrations, a new option for extending GitHub. Today, we're adding some new features and moving Integrations into <a href="/v3/pre-release/">pre-release</a> so you can begin using Integrations within your production workflows.</p>
+
+<h3>
+<a id="enabling-users-to-login-from-your-integration" class="anchor" href="#enabling-users-to-login-from-your-integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="enabling-users-to-login-from-your-integration" class="anchor" href="#enabling-users-to-login-from-your-integration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Enabling users to login from your Integration</h3>
+
+<p>Users can now login via your Integration, using the OAuth protocol, allowing you to identify users and display data to them from the relevant installations.</p>
+
+<p>An Integration can now make authorized API requests on behalf of a user, for example to deploy code or create an issue. When an Integration needs to fetch or create any information for a user, it should authenticate as that user to make these user-to-server requests. You can check which installations a user has access to via a new endpoint:</p>
+
+<p><code>GET /user/installations?access_token=...</code></p>
+
+<p><img src="https://camo.githubusercontent.com/9a34cabe36b9a43dbf6946036d099c4733f5a940/68747470733a2f2f63646e2e646176696463656c2e69732f73637265656e732f53637265656e2d53686f742d323031372d30342d32312d31302d35382d34392e706e67" alt="User via Integration action screenshot"></p>
+
+<p>More details can be found in <a href="/early-access/integrations/user-identification-authorization">Authenticating as a user via an Integration</a>.</p>
+
+<p>For regular server-to-server requests, for example creating a deployment status as the Integration, an Integration should continue to <a href="/early-access/integrations/authentication#as-an-installation">authenticate as itself</a> for the specific installation.</p>
+
+<h3>
+<a id="updating-an-integrations-permissions" class="anchor" href="#updating-an-integrations-permissions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="updating-an-integrations-permissions" class="anchor" href="#updating-an-integrations-permissions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Updating an Integration's permissions</h3>
+
+<p>When you create an Integration, you specify which permissions it needs, for example the ability to read issues or create deployments. You can now update the requested permissions, via <a href="https://github.com/settings/integrations"><strong>Settings &gt; Developer settings &gt; Integrations</strong></a>, when the needs of your Integration change.</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/564113/25344768/2045f016-28e1-11e7-8b02-2cc9b9b4821d.png" alt="Accept permissions screenshot"></p>
+
+<p>Users will be prompted to accept these changes, and enable the new permissions on their installation.</p>
+
+<p>You can check which permissions an installation has via the <a href="/v3/integrations/#get-a-single-installation">Integrations API</a>, which now includes which permissions are available to each installation.</p>
+
+<h3>
+<a id="post-installation-setup" class="anchor" href="#post-installation-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="post-installation-setup" class="anchor" href="#post-installation-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Post-Installation Setup</h3>
+
+<p>You can now configure a Setup URL for your Integration, to redirect users to after they install your integration, if additional setup is required on your end.</p>
+
+<h3>
+<a id="how-can-i-try-it" class="anchor" href="#how-can-i-try-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="how-can-i-try-it" class="anchor" href="#how-can-i-try-it" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I try it?</h3>
+
+<p>To access Integrations, you must first sign the <a href="https://github.com/prerelease/agreement">pre-release agreement</a>.</p>
+
+<p>Anyone can then register an Integration on GitHub via <a href="https://github.com/settings/integrations"><strong>Settings &gt; Developer settings &gt; Integrations</strong></a>, and manage an existing Integration from the same place.</p>
+
+<p>More information on getting started can be found in our <a href="/early-access/integrations">developer documentation</a>.</p>
+
+<p>To access the Integrations API functionality during the Pre-release, you’ll need to provide the following <a href="/v3/media/">custom media type</a> in the <code>Accept</code> header:</p>
+
+<pre><code>application/vnd.github.machine-man-preview+json
+</code></pre>
+
+<h3>
+<a id="give-us-your-feedback" class="anchor" href="#give-us-your-feedback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="give-us-your-feedback" class="anchor" href="#give-us-your-feedback" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Give us your feedback</h3>
+
+<p>Come talk to us, in the new <a href="https://platform.github.community/c/integrations">Platform forum</a>.</p>
+</div>
+
+<div class="change" id="/changes/2017-04-20-protected-branches-dismiss-stale-review/">
+  <h2 class="title">
+<a id="--protected-branches-api---dismiss-stale-reviews" class="anchor" href="#--protected-branches-api---dismiss-stale-reviews" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-04-20-protected-branches-dismiss-stale-review/">Protected Branches API - Dismiss Stale Reviews</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    April 20, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/nplasterer.png" alt="Avatar for nplasterer" data-proofer-ignore>
+      <a href="https://github.com/nplasterer" data-proofer-ignore>nplasterer</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>Today we're introducing an addition to the <a href="/v3/repos/branches">Protected Branches API preview</a>. You will now be able to
+turn on and off the ability to <a href="/v3/repos/branches/#update-pull-request-review-enforcement-of-protected-branch">dismiss stale reviews</a>.</p>
+
+<p>To access <a href="/v3/repos/branches/#update-branch-protection">Protected Branches API</a> during the preview period,
+you must provide a custom <a href="/v3/media/">media type</a> in the <code>Accept</code> header:</p>
+
+<pre><code>application/vnd.github.loki-preview+json
+</code></pre>
+
+<p>If you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=Admin+Enforcement+Protected+Branches+API">let us know</a>!</p>
+</div>
+
+<div class="change" id="/changes/2017-04-17-gdp-relaunch/">
+  <h2 class="title">
+<a id="--announcing-the-new-github-developer-program" class="anchor" href="#--announcing-the-new-github-developer-program" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-04-17-gdp-relaunch/">Announcing the new GitHub Developer Program</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    April 17, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/alrightjones.png" alt="Avatar for alrightjones" data-proofer-ignore>
+      <a href="https://github.com/alrightjones" data-proofer-ignore>alrightjones</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>Iteration is an essential part of building anything, be it an application, a company...even a developer program. Over the past few months we've had conversations with thousands of developers from all over the globe. Thanks to the insights and feedback shared with us, today we're announcing two exciting changes to the program.</p>
+
+<p>First, we're opening access to the Developer Program to users without a paid account. That means almost any developer, at any stage of production, can take advantage of this opportunity. Second, we've introduced participation levels that will allow members to receive not only benefits from GitHub and our partners, but a path to successful development for your next great application. </p>
+
+<p>Here's how the levels work:</p>
+
+<p><strong>Level 1</strong></p>
+
+<p>If you're just getting started, or need a little help getting off the ground, this level provides you with tools to learn more about the GitHub API and join our integrator community, such as dedicated Developer Program content and events.</p>
+
+<p><strong>Level 2</strong></p>
+
+<p>At this crucial stage, you've already launched a successful app — now we'll help you grow by taking full advantage of level 1 benefits as well as GitHub.com credits and network discounts. </p>
+
+<p><strong>Level 3</strong></p>
+
+<p>At this level, you're maintaining your successful application, and thinking about how to grow. You'll receive level 1 and 2 benefits, as well as GDP member spotlights and consulting services to help you scale successfully, among other rewards.</p>
+
+<p>If you're already enrolled in the GitHub Developer Program, <strong>no action is needed on your end</strong>. You will receive an email detailing your level, as well as your benefits. If you'd like to join the GitHub Developer Program, visit <a href="/program/">our homepage</a> to sign up.</p>
+
+<p>If you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=Announcing+the+new+GitHub+Developer+Program">get in touch with us</a>!</p>
+</div>
+
+<div class="change" id="/changes/2017-04-11-protected-branch-dismissal-restrictions/">
+  <h2 class="title">
+<a id="--protected-branches-api-pull-request-review-dismissal-restrictions" class="anchor" href="#--protected-branches-api-pull-request-review-dismissal-restrictions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-04-11-protected-branch-dismissal-restrictions/">Protected Branches API Pull Request Review Dismissal Restrictions</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    April 11, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/nplasterer.png" alt="Avatar for nplasterer" data-proofer-ignore>
+      <a href="https://github.com/nplasterer" data-proofer-ignore>nplasterer</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>Today we're releasing an addition to the <a href="/v3/repos/branches">Protected Branches API preview</a>,
+the ability to <a href="/v3/repos/branches/#get-pull-request-review-enforcement-of-protected-branch">restrict dismissals</a> to a specific group of users and teams.</p>
+
+<p>To access the <a href="/v3/repos/branches/#update-branch-protection">Protected Branches API</a> during the preview period,
+you must provide a custom <a href="/v3/media/">media type</a> in the <code>Accept</code> header:</p>
+
+<pre><code>application/vnd.github.loki-preview+json
+</code></pre>
+
+<p>If you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=Dismissal+Restrictions+Protected+Branches+API">let us know</a>!</p>
+</div>
+
+<div class="change" id="/changes/2017-04-07-end-merge-methods-api-preview/">
+  <h2 class="title">
+<a id="--merge-methods-api-is-now-official" class="anchor" href="#--merge-methods-api-is-now-official" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-04-07-end-merge-methods-api-preview/">Merge methods API is now official</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    April 7, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/arthurschreiber.png" alt="Avatar for arthurschreiber" data-proofer-ignore>
+      <a href="https://github.com/arthurschreiber" data-proofer-ignore>arthurschreiber</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>We're making the <a href="/changes/2016-09-26-pull-request-merge-api-update">Merge methods API</a> part of the official GitHub API.</p>
+
+<p>During the preview period you needed to provide the <code>application/vnd.github.polaris-preview</code> preview media type in the <code>Accept</code> header to opt-in to the changes. Now that the preview period has ended, you no longer need to specify this custom media type.</p>
+
+<p><strong>Note</strong>: During the preview period, we initially added a <code>squash</code> property in the payload to the <a href="/v3/pulls/#merge-a-pull-request-merge-button">pull request merge endpoint</a>. This property was
+superseded by a <code>merge_method</code> property to support both "squash and merge" as well as "rebase and merge" operations.
+With the end of the preview period, support for the <code>squash</code> property was removed in favor of the <code>merge_method</code> property.</p>
+
+<p>If you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=Merge+methods+API">get in touch with us</a>!</p>
+</div>
+
+<div class="change" id="/changes/2017-03-29-official-org-membership/">
+  <h2 class="title">
+<a id="--organization-memberships-api-is-now-official" class="anchor" href="#--organization-memberships-api-is-now-official" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-03-29-official-org-membership/">Organization Memberships API is now official</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    March 29, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/lizzhale.png" alt="Avatar for lizzhale" data-proofer-ignore>
+      <a href="https://github.com/lizzhale" data-proofer-ignore>lizzhale</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>We're making the <a href="/changes/2016-11-28-preview-org-membership">Organization Membership</a> part of the official GitHub API.</p>
+
+<p>During the preview period you needed to provide the <code>application/vnd.github.korra-preview</code> preview media type in the <code>Accept</code> header to opt-in to the changes. Now that the preview period has ended, you no longer need to specify this custom media type.</p>
+
+<p>If you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=Organization+Memberships+API">get in touch with us</a>!</p>
+</div>
+
+<div class="change" id="/changes/2017-03-22-protected-branches-admin-improvements/">
+  <h2 class="title">
+<a id="--protected-branches-api-admin-enforcement-updates" class="anchor" href="#--protected-branches-api-admin-enforcement-updates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-03-22-protected-branches-admin-improvements/">Protected Branches API Admin Enforcement Updates</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    March 22, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/nplasterer.png" alt="Avatar for nplasterer" data-proofer-ignore>
+      <a href="https://github.com/nplasterer" data-proofer-ignore>nplasterer</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>Today we're releasing an addition to the <a href="/v3/repos/branches">Protected Branches API preview</a>,
+the ability to <a href="/v3/repos/branches/#get-pull-request-review-enforcement-of-protected-branch">turn on and off admin settings</a> in one place!</p>
+
+<p><strong>This will be a breaking change in the near future.</strong> To make the transition easier, we're allowing you to set admin settings the old way by passing <code>include_admins</code> for <code>required_status_checks</code> or <code>required_pull_request_reviews</code> on the general update branch protection endpoint until ~April 21, 2017~ <strong>May 2, 2017</strong>. At that point, the only way to change your admin settings <a href="/v3/repos/branches/#update-branch-protection">will be to pass <code>enforce_admins</code></a>, and passing <code>include_admins</code> will receive 404 responses.</p>
+
+<p>To access <a href="/v3/repos/branches/#update-branch-protection">Protected Branches API</a> during the preview period,
+you must provide a custom <a href="/v3/media/">media type</a> in the <code>Accept</code> header:</p>
+
+<pre><code>application/vnd.github.loki-preview+json
+</code></pre>
+
+<p>If you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=Admin+Enforcement+Protected+Branches+API">let us know</a>!</p>
+</div>
+
+<div class="change" id="/changes/2017-03-13-discontinue-support-for-weak-cryptographic-standards/">
+  <h2 class="title">
+<a id="--discontinue-support-for-weak-cryptographic-standards" class="anchor" href="#--discontinue-support-for-weak-cryptographic-standards" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-03-13-discontinue-support-for-weak-cryptographic-standards/">Discontinue support for weak cryptographic standards</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    March 13, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/ptoomey3.png" alt="Avatar for ptoomey3" data-proofer-ignore>
+      <a href="https://github.com/ptoomey3" data-proofer-ignore>ptoomey3</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>GitHub is announcing the immediate deprecation, and eventual disablement, of our use of the following cryptographic standards:</p>
+
+<ul>
+<li>
+<code>TLSv1</code>/<code>TLSv1.1</code> - This applies to all HTTPS connections, including web, API, and Git connections to <a href="https://github.com">https://github.com</a> and <a href="https://api.github.com">https://api.github.com</a>.</li>
+<li>
+<code>diffie-hellman-group1-sha1</code> - This applies to all SSH connections to github.com.</li>
+<li>
+<code>diffie-hellman-group14-sha1</code> - This applies to all SSH connections to github.com.</li>
+</ul>
+
+<p>All of the above will be disabled on <em>February 1, 2018</em>.</p>
+
+<p>For full details on the deprecation, please see our <a href="https://githubengineering.com/crypto-deprecation-notice/">GitHub Engineering blog post</a>.</p>
+
+<p>As always, if you have any questions, please <a href="https://github.com/contact?form%5Bsubject%5D=Crypto+deprecation+notice">get in touch</a>.</p>
+</div>
+
+<div class="change" id="/changes/2017-03-07-community-health-api-enhancements/">
+  <h2 class="title">
+<a id="--community-health-api-improvements" class="anchor" href="#--community-health-api-improvements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-03-07-community-health-api-enhancements/">Community Health API Improvements</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    March 7, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/CoralineAda.png" alt="Avatar for CoralineAda" data-proofer-ignore>
+      <a href="https://github.com/CoralineAda" data-proofer-ignore>CoralineAda</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>Based on initial feedback to our Community Health API, we have made some breaking
+changes to what the API returns in response to a request. These changes make
+available more detailed information about each of the files that contributes to
+the overall health score.</p>
+
+<p>As before, you can access this API during the preview period by providing a custom
+<a href="/v3/media">media type</a> in the <code>Accept</code> header:</p>
+
+<pre><code>application/vnd.github.black-panther-preview
+</code></pre>
+
+<p>For example:</p>
+
+<pre class="command-line">
+curl "https://api.github.com/repos/github/hubot/community/profile" \
+  -H 'Authorization: token TOKEN' \
+  -H "Accept: application/vnd.github.black-panther-preview"
+</pre>
+
+<p>For details on the data returned from this endpoint, refer to the <a href="/v3/repos/community/">documentation</a>.</p>
+
+<p>If you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=Community+Health+API+Preview">let us know</a>.</p>
+</div>
+
+<div class="change" id="/changes/2017-02-28-user-blocking-apis-and-webhook/">
+  <h2 class="title">
+<a id="--new-user-blocking-apis-and-webhook" class="anchor" href="#--new-user-blocking-apis-and-webhook" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+  <a href="/changes/2017-02-28-user-blocking-apis-and-webhook/">New user blocking APIs and webhook</a>
+</h2>
+
+<div class="meta">
+  <ul>
+  <li class="published">
+    <span class="octicon octicon-calendar"></span>
+    February 28, 2017
+    
+  </li>
+  
+  <li class="who_when">
+    <img height="16" width="16" src="https://github.com/benbalter.png" alt="Avatar for benbalter" data-proofer-ignore>
+      <a href="https://github.com/benbalter" data-proofer-ignore>benbalter</a>
+  </li>
+  
+</ul>
+</div>
+
+  <p>You've been able to block users <a href="https://github.com/blog/862-block-the-bullies">from your personal account</a> and <a href="https://github.com/blog/2146-organizations-can-now-block-abusive-users">from organizations you administer</a> for a while now. Starting today, you can block and unblock users via the API and can subscribe to receive a webhook when you do.</p>
+
+<h3>
+<a id="blocking-users-from-your-personal-account" class="anchor" href="#blocking-users-from-your-personal-account" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="blocking-users-from-your-personal-account" class="anchor" href="#blocking-users-from-your-personal-account" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Blocking users from your personal account</h3>
+
+<p><a href="https://help.github.com/articles/blocking-a-user-from-your-personal-account/">Blocking a user</a> denies them access to your activity and repositories, and prevents them from sending you notifications. With the <a href="/v3/users/blocking/">user blocking API preview</a>, you can block and unblock a particular user, see which users you've blocked, and check whether you've blocked a particular user.</p>
+
+<p>For example, to block the @octocat user from your personal account:</p>
+
+<pre class="highlight highlight-command-line"><code>curl https://api.github.com/user/blocks/octocat \
+ -X PUT
+ -H 'Authorization: token TOKEN' \
+ -H "Accept: application/vnd.github.giant-sentry-fist-preview+json"
+</code></pre>
+
+
+<h3>
+<a id="blocking-users-from-your-organization" class="anchor" href="#blocking-users-from-your-organization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="blocking-users-from-your-organization" class="anchor" href="#blocking-users-from-your-organization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Blocking users from your organization</h3>
+
+<p>Organization owners <a href="https://help.github.com/articles/blocking-a-user-from-your-organization/">can block users</a> to remove their ability to collaborate on the organization's repositories. With <a href="/v3/orgs/blocking/">the organization user blocking API</a>, organization administrators can see which users the organization has blocked, check if a particular user is blocked, and of course, block or unblock users from the organization.</p>
+
+<p>For example, to get a list of the users that the @atom organization has blocked:</p>
+
+<pre class="highlight highlight-command-line"><code>curl https://api.github.com/orgs/atom/blocks \
+ -X GET
+ -H 'Authorization: token TOKEN' \
+ -H "Accept: application/vnd.github.giant-sentry-fist-preview+json"
+</code></pre>
+
+
+<h3>
+<a id="accessing-the-user-blocking-api-during-the-early-access-period" class="anchor" href="#accessing-the-user-blocking-api-during-the-early-access-period" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="accessing-the-user-blocking-api-during-the-early-access-period" class="anchor" href="#accessing-the-user-blocking-api-during-the-early-access-period" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Accessing the user blocking API during the Early Access period</h3>
+
+<p>To access the user blocking API during the Early Access period,
+you must provide a custom <a href="/v3/media/">media type</a> in the <code>Accept</code> header:</p>
+
+<pre><code>application/vnd.github.giant-sentry-fist-preview+json
+</code></pre>
+
+<p>During the preview period, we may change aspects of these API methods based on
+developer feedback. If we do, we will announce the changes here on the developer
+blog, but we will not provide any advance notice.</p>
+
+<h3>
+<a id="new-webhook-orgblockevent" class="anchor" href="#new-webhook-orgblockevent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+<a id="new-webhook-orgblockevent" class="anchor" href="#new-webhook-orgblockevent" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>New webhook: <code>OrgBlockEvent</code>
+</h3>
+
+<p>You can now subscribe to <a href="/v3/activity/events/types/#orgblockevent">a new webhook event for when an organization blocks or unblocks a user</a>. You'll automatically begin receiving these events if your organization has a webhook that is subscribed to <a href="/webhooks/#wildcard-event">wildcard events</a>. As always, we continue to <a href="/changes/2016-03-15-new-webhook-actions/#how-to-work-with-new-event-actions">recommend listening for the actions</a> in order to future-proof your code.</p>
+
+<p>The new <a href="/v3/activity/events/types/#orgblockevent"><code>OrgBlockEvent</code></a> contains the following payload:</p>
+
+<ul>
+<li>
+<code>action</code> - Either <code>blocked</code> or <code>unblocked</code>
+</li>
+<li>
+<code>blocked_user</code> - The user that was blocked or unblocked</li>
+<li>
+<code>organization</code> - The organization that blocked or unblocked the user</li>
+<li>
+<code>sender</code> - The user who sent the blocking/unblocking request on behalf of the organization</li>
+</ul>
+
+<p>As always, if you have any questions or feedback, please <a href="https://github.com/contact?form%5Bsubject%5D=User+Blocking+API">get in touch with us</a>.</p>
+
+<p></p>
+</div>
+
+<div class="paginate-wrap">
+  
+
+<div class="pagination">
+  
+  <span class="disabled"><span class="octicon octicon-chevron-left"></span></span>
+  
+
+  
+    
+    
+    
+    
+
+    
+      <a href="/changes/1" class="current">1</a>
+    
+
+    
+  
+    
+    
+    
+    
+
+    
+      <a href="/changes/2" class="">2</a>
+    
+
+    
+  
+    
+    
+    
+    
+
+    
+      <a href="/changes/3" class="">3</a>
+    
+
+    
+  
+    
+    
+    
+    
+      
+      
+      
+    
+
+    
+      <span class="disabled">…</span>
+    
+
+    
+  
+    
+    
+    
+    
+
+    
+      <a href="/changes/17" class="">17</a>
+    
+
+    
+  
+    
+    
+    
+    
+
+    
+      <a href="/changes/18" class="">18</a>
+    
+
+    
+  
+
+  
+    <a href="/changes/2" class="next_page"><span class="octicon octicon-chevron-right"></span></a>
+  
+</div>
+
+<p></p>
+</div>
+      </div>
+
+      <div class="sidebar-shell col-md-4">
+        <h3>Recent Posts</h3>
+<ul class="headlines sidebar-module sidebar-menu">
+
+  <li><a href="/changes/2017-04-25-Integrations-Pre-Release/">Integrations Pre-Release<br /><span class="date">April 25, 2017</span></a></li>
+
+  <li><a href="/changes/2017-04-20-protected-branches-dismiss-stale-review/">Protected Branches API - Dismiss Stale Reviews<br /><span class="date">April 20, 2017</span></a></li>
+
+  <li><a href="/changes/2017-04-17-gdp-relaunch/">Announcing the new GitHub Developer Program<br /><span class="date">April 17, 2017</span></a></li>
+
+  <li><a href="/changes/2017-04-11-protected-branch-dismissal-restrictions/">Protected Branches API Pull Request Review Dismissal Restrictions<br /><span class="date">April 11, 2017</span></a></li>
+
+  <li><a href="/changes/2017-04-07-end-merge-methods-api-preview/">Merge methods API is now official<br /><span class="date">April 7, 2017</span></a></li>
+
+  <li><a href="/changes/2017-03-29-official-org-membership/">Organization Memberships API is now official<br /><span class="date">March 29, 2017</span></a></li>
+
+  <li><a href="/changes/2017-03-22-protected-branches-admin-improvements/">Protected Branches API Admin Enforcement Updates<br /><span class="date">March 22, 2017</span></a></li>
+
+  <li><a href="/changes/2017-03-13-discontinue-support-for-weak-cryptographic-standards/">Discontinue support for weak cryptographic standards<br /><span class="date">March 13, 2017</span></a></li>
+
+</ul>
+
+        <div class="sidebar-module notice"><a class="rss-subscribe" href="/changes.atom">Subscribe to the RSS feed</a></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="footer text-muted">
+  <div class="container">
+    <span class="footer-legal">&copy; 2017 GitHub Inc. All rights reserved.</span>
+    <span class="mega-octicon octicon-mark-github footer-mark"></span>
+    <nav class="footer-nav">
+      <a class="footer-nav-item" href="https://help.github.com/articles/github-terms-of-service">Terms of service</a>
+      <a class="footer-nav-item" href="https://github.com/site/privacy">Privacy</a>
+      <a class="footer-nav-item" href="https://github.com/security">Security</a>
+      <a class="footer-nav-item" href="https://github.com/support">Support</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-3769691-37', 'github.com');
+  ga('send', 'pageview');
+</script>
+
+</body>
+</html>
